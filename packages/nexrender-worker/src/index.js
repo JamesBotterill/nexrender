@@ -101,6 +101,7 @@ const start = async (host, secret, settings, headers) => {
         }
 
         let retryCount = 0;
+        let numberOfRetries = settings.numOfRetries || 1; 
 
         do {
             try {
@@ -121,7 +122,7 @@ const start = async (host, secret, settings, headers) => {
                 retryCount++;
 
                 // Check if retries are allowed and the maximum retry count is not reached
-                if (settings.retryOnError && retryCount <= settings.numOfRetries) {
+                if (settings.retryOnError && retryCount <= numberOfRetries) {
                     console.log(`[${job.uid}] error occurred during rendering: ${err.toString()}`);
                     console.log(`[${job.uid}] Retrying rendering (Attempt ${retryCount} of ${settings.numOfRetries})...`);
 

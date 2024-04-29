@@ -119,6 +119,11 @@ if (args['--help']) {
     --stop-on-error                         forces worker to stop if processing/rendering error occures,
                                             otherwise worker will report an error, and continue working
 
+    --retry-on-error                        Force the worker to retry a render which has failed due to an error, using the --number-of-retries to determine
+                                            the number of times it will be retried.
+    
+    --number-of-retries                     A number of times a render will be retried in the event of an error (defaults to 1).
+
     --exit-on-empty-queue                   worker will exit when too many empty queues (see --tolerate-empty-queues) have been detected.
                                             Useful when running on AWS EC2, to allow the instance to self-terminate and reduce compute costs
 
@@ -219,8 +224,8 @@ opt('debug',                '--debug');
 opt('multiFrames',          '--multi-frames');
 opt('reuse',                '--reuse');
 opt('stopOnError',          '--stop-on-error');
-opt('retryOnError',          '--retry-on-error');
-opt('numOfRetries',          '--number-of-retries');
+opt('retryOnError',         '--retry-on-error');
+opt('numOfRetries',         '--number-of-retries');
 opt('tolerateEmptyQueues',  '--tolerate-empty-queues');
 opt('exitOnEmptyQueue',     '--exit-on-empty-queue');
 opt('maxMemoryPercent',     '--max-memory-percent');
