@@ -126,6 +126,8 @@ const start = async (host, secret, settings, headers) => {
                     console.log(`[${job.uid}] error occurred during rendering: ${err.toString()}`);
                     console.log(`[${job.uid}] Retrying rendering (Attempt ${retryCount} of ${settings.numOfRetries})...`);
 
+                    settings.track('Worker Job Error - Retry Attempted' , { job_id: job.uid });
+
                     //update state to inform user job is retrying
                     job.state = 'retrying'
 
