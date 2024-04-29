@@ -25,6 +25,8 @@ const args = arg({
     '--cache-path':             String,
 
     '--stop-on-error':          Boolean,
+    '--retry-on-error':         Boolean,
+    '--number-of-retries':      Number,
     '--exit-on-empty-queue':    Boolean,
     '--tolerate-empty-queues':  Number,
 
@@ -217,6 +219,8 @@ opt('debug',                '--debug');
 opt('multiFrames',          '--multi-frames');
 opt('reuse',                '--reuse');
 opt('stopOnError',          '--stop-on-error');
+opt('retryOnError',          '--retry-on-error');
+opt('numOfRetries',          '--number-of-retries');
 opt('tolerateEmptyQueues',  '--tolerate-empty-queues');
 opt('exitOnEmptyQueue',     '--exit-on-empty-queue');
 opt('maxMemoryPercent',     '--max-memory-percent');
@@ -236,6 +240,12 @@ if (args['--stop-on-error']) {
     settings['stopOnError'] = true;
 } else {
     settings['stopOnError'] = false;
+}
+
+if (args['--retry-on-error']) {
+    settings['retryOnError'] = true;
+} else {
+    settings['retryOnError'] = false;
 }
 
 if (args['--cleanup']) {
